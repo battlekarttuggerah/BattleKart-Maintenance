@@ -16,14 +16,16 @@ const userRoutes = require("./routes/userRoutes");
 
 const app = express();
 
-// ✅ CORS Configuration
+// ✅ CORS Configuration - Allows Frontend to Communicate with Backend
 const corsOptions = {
   origin: 'https://battlekart-maintenance-frontend.onrender.com', // Replace with your frontend's URL
-  methods: ['GET', 'POST'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // ✅ Added PUT & DELETE
+  allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true, // Allow cookies and authorization headers
 };
 
 app.use(cors(corsOptions));
+app.options("*", cors(corsOptions)); // ✅ Handle Preflight Requests
 
 // ✅ Middleware
 app.use(express.json());
@@ -48,19 +50,19 @@ app.use("/api/checklistLogs", checklistLogRoutes);
 app.use("/api/profile", profileRoutes);
 app.use("/api/users", userRoutes); // ✅ Added User Management Route
 
-// ✅ Root route to handle requests to "/"
+// ✅ Root route to confirm API is running
 app.get("/", (req, res) => {
   res.send("BattleKart Maintenance API is running!");
 });
 
-// ✅ Serve static files for production (if React app is built and inside 'client/build')
+// ✅ Serve static files for production (if React app is built inside 'client/build')
 app.use(express.static(path.join(__dirname, 'client/build')));
 
-// ✅ Handle all other routes and redirect them to index.html for React app to handle routing
+// ✅ Handle all other routes and serve `index.html` (React Router support)
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
 });
 
 // ✅ Start Server
-const PORT = process.env.PORT || 5000; // Default to 5000 if not specified in environment variables
+const PORT = process.env.PORT || 5000; // Default to 5000 if not specified
 app.listen(PORT, () => console.log(`✅ Server running on port ${PORT}`));
