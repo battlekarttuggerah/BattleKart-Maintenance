@@ -2,6 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
+const path = require("path");
 
 // Import routes
 const authRoutes = require("./routes/authRoutes");
@@ -15,18 +16,26 @@ const userRoutes = require("./routes/userRoutes");
 
 const app = express();
 
+// ✅ CORS Configuration
+const corsOptions = {
+  origin: 'https://battlekart-maintenance-frontend.onrender.com', // Replace with your frontend's URL
+  methods: ['GET', 'POST'],
+  credentials: true, // Allow cookies and authorization headers
+};
+
+app.use(cors(corsOptions));
+
 // ✅ Middleware
 app.use(express.json());
-app.use(cors());
 
 // ✅ Connect to MongoDB
 mongoose.connect(process.env.MONGO_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
 }).then(() => {
-    console.log("✅ MongoDB Connected");
+  console.log("✅ MongoDB Connected");
 }).catch(err => {
-    console.error("❌ MongoDB Connection Error:", err);
+  console.error("❌ MongoDB Connection Error:", err);
 });
 
 // ✅ Routes
@@ -41,9 +50,17 @@ app.use("/api/users", userRoutes); // ✅ Added User Management Route
 
 // ✅ Root route to handle requests to "/"
 app.get("/", (req, res) => {
-    res.send("BattleKart Maintenance API is running!");
+  res.send("BattleKart Maintenance API is running!");
+});
+
+// ✅ Serve static files for production (if React app is built and inside 'client/build')
+app.use(express.static(path.join(__dirname, 'client/build')));
+
+// ✅ Handle all other routes and redirect them to index.html for React app to handle routing
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
 });
 
 // ✅ Start Server
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5000; // Default to 5000 if not specified in environment variables
 app.listen(PORT, () => console.log(`✅ Server running on port ${PORT}`));
