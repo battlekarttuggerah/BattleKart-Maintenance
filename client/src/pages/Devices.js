@@ -21,7 +21,7 @@ const Devices = () => {
 
     const fetchSubcategories = async () => {
         try {
-            const response = await fetch("http://localhost:5000/api/subcategories");
+            const response = await fetch("https://battlekart-maintenance.onrender.com/api/subcategories");
             if (!response.ok) throw new Error("Failed to fetch subcategories");
             const data = await response.json();
             setSubcategories(data);
@@ -40,7 +40,7 @@ const Devices = () => {
         }
 
         try {
-            const response = await fetch(`http://localhost:5000/api/devices?subcategory=${subcategoryId}`);
+            const response = await fetch(`https://battlekart-maintenance.onrender.com/api/devices?subcategory=${subcategoryId}`);
             if (!response.ok) throw new Error("Failed to fetch devices");
             const data = await response.json();
             setDevices(data);
@@ -81,7 +81,7 @@ const Devices = () => {
 
     const handleDeleteDevice = async (deviceId) => {
         try {
-            const response = await fetch(`http://localhost:5000/api/devices/${deviceId}`, { method: "DELETE" });
+            const response = await fetch(`https://battlekart-maintenance.onrender.com/api/devices/${deviceId}`, { method: "DELETE" });
             if (!response.ok) throw new Error("Failed to delete device");
 
             console.log("✅ Device deleted successfully");
@@ -96,8 +96,8 @@ const Devices = () => {
         try {
             const method = selectedDevice._id ? "PUT" : "POST";
             const url = selectedDevice._id 
-                ? `http://localhost:5000/api/devices/${selectedDevice._id}` 
-                : `http://localhost:5000/api/devices`;
+                ? `https://battlekart-maintenance.onrender.com/api/devices/${selectedDevice._id}` 
+                : `https://battlekart-maintenance.onrender.com/api/devices`;
 
             const response = await fetch(url, {
                 method: method,
@@ -136,20 +136,20 @@ const Devices = () => {
 
         try {
             // Fetch all subcategories
-            const subcatResponse = await fetch("http://localhost:5000/api/subcategories");
+            const subcatResponse = await fetch("https://battlekart-maintenance.onrender.com/api/subcategories");
             if (!subcatResponse.ok) throw new Error("Failed to fetch subcategories");
             const subcats = await subcatResponse.json();
 
             // Iterate over each subcategory to fetch devices and their records
             for (const subcat of subcats) {
-                const devicesResponse = await fetch(`http://localhost:5000/api/devices?subcategory=${subcat._id}`);
+                const devicesResponse = await fetch(`https://battlekart-maintenance.onrender.com/api/devices?subcategory=${subcat._id}`);
                 if (!devicesResponse.ok) throw new Error(`Failed to fetch devices for ${subcat.name}`);
                 const devicesData = await devicesResponse.json();
 
                 // Process each device
                 for (const device of devicesData) {
                     // Fetch checklist records for the current device
-                    const recordsResponse = await fetch(`http://localhost:5000/api/checklistRecords?device=${device._id}`);
+                    const recordsResponse = await fetch(`https://battlekart-maintenance.onrender.com/api/checklistRecords?device=${device._id}`);
                     if (!recordsResponse.ok) {
                         console.warn(`⚠️ Failed to fetch records for ${device.name}`);
                         continue;

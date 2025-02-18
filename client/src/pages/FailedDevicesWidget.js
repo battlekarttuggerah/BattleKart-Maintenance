@@ -13,7 +13,7 @@ const FailedDevicesWidget = () => {
     const fetchFailedDevices = async () => {
         setLoading(true);
         try {
-            const devicesResponse = await fetch("http://localhost:5000/api/devices");
+            const devicesResponse = await fetch("https://battlekart-maintenance.onrender.com/api/devices");
             if (!devicesResponse.ok) throw new Error("Failed to fetch devices");
             const devices = await devicesResponse.json();
 
@@ -21,7 +21,7 @@ const FailedDevicesWidget = () => {
 
             // 🔍 Check each device's records
             for (const device of devices) {
-                const recordsResponse = await fetch(`http://localhost:5000/api/checklistRecords?device=${device._id}`);
+                const recordsResponse = await fetch(`https://battlekart-maintenance.onrender.com/api/checklistRecords?device=${device._id}`);
                 if (!recordsResponse.ok) throw new Error(`Failed to fetch records for ${device.name}`);
                 const records = await recordsResponse.json();
 
@@ -82,7 +82,7 @@ const FailedDevicesWidget = () => {
         }
 
         try {
-            const response = await fetch(`http://localhost:5000/api/checklistRecords/rectify/${selectedFailure.recordId}`, {
+            const response = await fetch(`https://battlekart-maintenance.onrender.com/api/checklistRecords/rectify/${selectedFailure.recordId}`, {
                 method: "PATCH",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ field: selectedFailure.field, date: rectificationDate }),

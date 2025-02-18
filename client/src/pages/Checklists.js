@@ -19,7 +19,7 @@ const Checklists = () => {
     // ✅ Fetch Checklists
     const fetchChecklists = async () => {
         try {
-            const response = await fetch("http://localhost:5000/api/checklists");
+            const response = await fetch("https://battlekart-maintenance.onrender.com/api/checklists");
             if (!response.ok) throw new Error("Failed to fetch checklists.");
             const data = await response.json();
             setChecklists(data);
@@ -33,7 +33,7 @@ const Checklists = () => {
     const fetchSubcategories = async () => {
         try {
             console.log("📡 Fetching subcategories...");
-            const response = await fetch("http://localhost:5000/api/subcategories");
+            const response = await fetch("https://battlekart-maintenance.onrender.com/api/subcategories");
             const data = await response.json();
             console.log("🔍 Subcategories fetched:", data);
             setSubcategories(data);
@@ -52,7 +52,7 @@ const Checklists = () => {
         }
 
         try {
-            const response = await fetch("http://localhost:5000/api/checklists", {
+            const response = await fetch("https://battlekart-maintenance.onrender.com/api/checklists", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
@@ -83,7 +83,7 @@ const Checklists = () => {
         if (!editingChecklist) return;
 
         try {
-            const response = await fetch(`http://localhost:5000/api/checklists/${editingChecklist._id}`, {
+            const response = await fetch(`https://battlekart-maintenance.onrender.com/api/checklists/${editingChecklist._id}`, {
                 method: "PUT",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
@@ -106,7 +106,7 @@ const Checklists = () => {
     // ✅ Delete Checklist
     const handleDeleteChecklist = async (id) => {
         try {
-            const response = await fetch(`http://localhost:5000/api/checklists/${id}`, { method: "DELETE" });
+            const response = await fetch(`https://battlekart-maintenance.onrender.com/api/checklists/${id}`, { method: "DELETE" });
             if (!response.ok) throw new Error("Failed to delete checklist.");
             setChecklists(checklists.filter(c => c._id !== id));
         } catch (error) {

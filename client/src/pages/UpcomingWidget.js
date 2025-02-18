@@ -14,7 +14,7 @@ const UpcomingWidget = () => {
         const fetchUpcomingInspections = async () => {
             setLoading(true);
             try {
-                const devicesResponse = await fetch("http://localhost:5000/api/devices");
+                const devicesResponse = await fetch("https://battlekart-maintenance.onrender.com/api/devices");
                 if (!devicesResponse.ok) throw new Error("Failed to fetch devices");
                 const devices = await devicesResponse.json();
 
@@ -24,7 +24,7 @@ const UpcomingWidget = () => {
                     const subcategoryId = device.subcategory?._id || device.subcategory;
 
                     // ✅ Fetch all checklists and filter by subcategory
-                    const checklistResponse = await fetch("http://localhost:5000/api/checklists");
+                    const checklistResponse = await fetch("https://battlekart-maintenance.onrender.com/api/checklists");
                     if (!checklistResponse.ok) throw new Error("Failed to fetch checklists");
                     const allChecklists = await checklistResponse.json();
 
@@ -34,7 +34,7 @@ const UpcomingWidget = () => {
                     });
 
                     // ✅ Fetch checklist records for the current device
-                    const recordsResponse = await fetch(`http://localhost:5000/api/checklistRecords?device=${device._id}`);
+                    const recordsResponse = await fetch(`https://battlekart-maintenance.onrender.com/api/checklistRecords?device=${device._id}`);
                     let records = [];
                     if (recordsResponse.ok) {
                         records = await recordsResponse.json();

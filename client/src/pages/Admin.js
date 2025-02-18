@@ -28,7 +28,7 @@ const Admin = () => {
     // Fetch existing users
     const fetchUsers = async () => {
         try {
-            const response = await fetch("http://localhost:5000/api/users");
+            const response = await fetch("https://battlekart-maintenance.onrender.com/api/users");
             const result = await response.json();
             if (response.ok) setUsers(result);
             else setMessage(result.error);
@@ -46,7 +46,7 @@ const Admin = () => {
         }
 
         try {
-            const response = await fetch("http://localhost:5000/api/users", {
+            const response = await fetch("https://battlekart-maintenance.onrender.com/api/users", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ username, email, password, role })
@@ -77,7 +77,7 @@ const Admin = () => {
 
     const handleDeleteUser = async () => {
         try {
-            const response = await fetch(`http://localhost:5000/api/users/${userToDelete._id}`, {
+            const response = await fetch(`https://battlekart-maintenance.onrender.com/api/users/${userToDelete._id}`, {
                 method: "DELETE"
             });
             if (response.ok) {

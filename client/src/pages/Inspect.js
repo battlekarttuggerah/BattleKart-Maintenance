@@ -23,7 +23,7 @@ const Inspect = () => {
     // ✅ Fetch device details, checklists, and records
     const fetchDeviceAndChecklists = useCallback(async () => {
         try {
-            const deviceResponse = await fetch(`http://localhost:5000/api/devices/${deviceId}`);
+            const deviceResponse = await fetch(`https://battlekart-maintenance.onrender.com/api/devices/${deviceId}`);
             if (!deviceResponse.ok) throw new Error("Failed to fetch device");
             const deviceData = await deviceResponse.json();
 
@@ -35,7 +35,7 @@ const Inspect = () => {
                 subcategoryId: subcategoryId,
             });
 
-            const checklistResponse = await fetch(`http://localhost:5000/api/checklists`);
+            const checklistResponse = await fetch(`https://battlekart-maintenance.onrender.com/api/checklists`);
             if (!checklistResponse.ok) throw new Error("Failed to fetch checklists");
             const checklistData = await checklistResponse.json();
 
@@ -46,7 +46,7 @@ const Inspect = () => {
             setChecklists(filteredChecklists);
 
             // ✅ Fetch previous records
-            const recordsResponse = await fetch(`http://localhost:5000/api/checklistRecords?device=${deviceId}`);
+            const recordsResponse = await fetch(`https://battlekart-maintenance.onrender.com/api/checklistRecords?device=${deviceId}`);
             if (recordsResponse.ok) {
                 const recordsData = await recordsResponse.json();
                 setRecords(recordsData);
@@ -140,7 +140,7 @@ const Inspect = () => {
         };
 
         try {
-            const response = await fetch("http://localhost:5000/api/checklistRecords", {
+            const response = await fetch("https://battlekart-maintenance.onrender.com/api/checklistRecords", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(payload),

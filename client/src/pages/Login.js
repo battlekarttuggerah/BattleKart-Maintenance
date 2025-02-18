@@ -16,7 +16,7 @@ const Login = () => {
     // 🆕 Function to fetch username after login
     const fetchUsernameByEmail = async (email) => {
         try {
-            const response = await fetch(`http://localhost:5000/api/users/username-by-email?email=${email}`);
+            const response = await fetch(`https://battlekart-maintenance.onrender.com/api/users/username-by-email?email=${email}`);
             const data = await response.json();
             if (response.ok && data.username) {
                 localStorage.setItem("userName", data.username);

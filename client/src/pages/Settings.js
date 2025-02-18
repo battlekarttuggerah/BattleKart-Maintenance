@@ -20,7 +20,7 @@ const Settings = () => {
 
     const fetchSubcategories = async () => {
         try {
-            const response = await fetch("http://localhost:5000/api/subcategories");
+            const response = await fetch("https://battlekart-maintenance.onrender.com/api/subcategories");
             const data = await response.json();
 
             // ✅ Ensure data is an array
@@ -39,7 +39,7 @@ const Settings = () => {
     const handleAddSubcategory = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch("http://localhost:5000/api/subcategories", {
+            const response = await fetch("https://battlekart-maintenance.onrender.com/api/subcategories", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ name: newSubcategory }),
@@ -59,7 +59,7 @@ const Settings = () => {
 
     const handleDeleteSubcategory = async (id) => {
         try {
-            await fetch(`http://localhost:5000/api/subcategories/${id}`, { method: "DELETE" });
+            await fetch(`https://battlekart-maintenance.onrender.com/api/subcategories/${id}`, { method: "DELETE" });
             fetchSubcategories();
             if (selectedSubcategory === id) {
                 setSelectedSubcategory(null);
@@ -73,7 +73,7 @@ const Settings = () => {
         if (!selectedSubcategory || !newField.trim()) return;
 
         try {
-            const response = await fetch(`http://localhost:5000/api/subcategories/${selectedSubcategory}/fields`, {
+            const response = await fetch(`https://battlekart-maintenance.onrender.com/api/subcategories/${selectedSubcategory}/fields`, {
                 method: "PUT",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ field: newField }),
@@ -95,7 +95,7 @@ const Settings = () => {
         if (!selectedSubcategory) return;
 
         try {
-            const response = await fetch(`http://localhost:5000/api/subcategories/${selectedSubcategory}/fields/remove`, {
+            const response = await fetch(`https://battlekart-maintenance.onrender.com/api/subcategories/${selectedSubcategory}/fields/remove`, {
                 method: "PUT",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ field: fieldToDelete }),

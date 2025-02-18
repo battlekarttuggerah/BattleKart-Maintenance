@@ -13,7 +13,7 @@ const ChecklistFields = ({ checklistId, onFieldAdded }) => {
 
     const fetchFields = async () => {
         try {
-            const response = await fetch(`http://localhost:5000/api/checklists/${checklistId}`);
+            const response = await fetch(`https://battlekart-maintenance.onrender.com/api/checklists/${checklistId}`);
             if (!response.ok) throw new Error("Failed to fetch fields.");
             const checklist = await response.json();
             setFields(checklist.fields || []);
@@ -33,7 +33,7 @@ const ChecklistFields = ({ checklistId, onFieldAdded }) => {
         }
 
         try {
-            const response = await fetch(`http://localhost:5000/api/checklists/${checklistId}/add-field`, {
+            const response = await fetch(`https://battlekart-maintenance.onrender.com/api/checklists/${checklistId}/add-field`, {
                 method: "PUT",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(newField)
@@ -51,7 +51,7 @@ const ChecklistFields = ({ checklistId, onFieldAdded }) => {
 
     const handleDeleteField = async (fieldName) => {
         try {
-            const response = await fetch(`http://localhost:5000/api/checklists/${checklistId}/delete-field`, {
+            const response = await fetch(`https://battlekart-maintenance.onrender.com/api/checklists/${checklistId}/delete-field`, {
                 method: "PUT",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ name: fieldName })

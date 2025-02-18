@@ -11,7 +11,7 @@ const DeviceWidget = () => {
     useEffect(() => {
         const fetchDevices = async () => {
             try {
-                const response = await fetch("http://localhost:5000/api/devices");
+                const response = await fetch("https://battlekart-maintenance.onrender.com/api/devices");
                 if (!response.ok) throw new Error("Failed to fetch devices");
 
                 const devices = await response.json();

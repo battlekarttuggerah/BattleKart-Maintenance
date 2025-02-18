@@ -25,7 +25,7 @@ const Profile = () => {
         // ✅ Fetch user profile
         const fetchProfile = async () => {
             try {
-                const response = await fetch(`http://localhost:5000/api/profile?username=${username}`);
+                const response = await fetch(`https://battlekart-maintenance.onrender.com/api/profile?username=${username}`);
                 if (!response.ok) throw new Error("Failed to fetch profile");
                 const data = await response.json();
                 setProfile(data);
@@ -48,7 +48,7 @@ const Profile = () => {
     // ✅ Handle Save Changes
     const handleSave = async () => {
         try {
-            const response = await fetch("http://localhost:5000/api/users/profile", {
+            const response = await fetch("https://battlekart-maintenance.onrender.com/api/users/profile", {
                 method: "PUT",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
