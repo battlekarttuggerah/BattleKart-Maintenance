@@ -1,0 +1,62 @@
+/* Global styles */
+:root {
+    --sidebar-bg: #1E1E1E;
+    --sidebar-text: #FFFFFF;
+    --content-bg: #2A2A2A;
+    --text-color: #FFFFFF;
+}
+
+.light {
+    --sidebar-bg: #F8F9FA;
+    --sidebar-text: #000000;
+    --content-bg: #FFFFFF;
+    --text-color: #000000;
+}
+
+/* ✅ Sidebar Styling */
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background-color: var(--sidebar-bg);
+    color: var(--sidebar-text);
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+/* ✅ Main content area - accounts for sidebar */
+.main-content {
+    margin-left: 250px; /* ✅ Space for sidebar */
+    width: calc(100% - 250px);
+    padding: 20px;
+    background-color: var(--content-bg);
+    color: var(--text-color);
+    min-height: 100vh;
+}
+
+/* ✅ Special case for login page (No Sidebar) */
+.login-page .main-content {
+    margin-left: 0; /* ✅ Remove left margin */
+    width: 100%; /* ✅ Make full width */
+}
+
+/* ✅ Devices Page Styling */
+.devices-container {
+    padding: 20px;
+    background-color: var(--content-bg);
+    color: var(--text-color);
+}
+
+.list-group-item {
+    background: none;
+    color: var(--text-color);
+    border: none;
+    padding: 10px;
+}
+
+.list-group-item:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}

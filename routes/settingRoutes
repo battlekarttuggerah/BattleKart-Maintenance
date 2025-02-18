@@ -1,0 +1,28 @@
+const express = require("express");
+const router = express.Router();
+const dotenv = require("dotenv");
+dotenv.config();
+
+// Get Square API Key
+router.get("/square-api-key", (req, res) => {
+    const apiKey = process.env.SQUARE_API_KEY;
+    if (apiKey) {
+        res.json({ apiKey: apiKey });
+    } else {
+        res.status(404).json({ error: "Square API key not set." });
+    }
+});
+
+// Update Square API Key
+router.post("/square-api-key", (req, res) => {
+    const { apiKey } = req.body;
+    if (!apiKey) {
+        return res.status(400).json({ error: "API key is required." });
+    }
+
+    // In a real application, save this securely (e.g., encrypted database)
+    process.env.SQUARE_API_KEY = apiKey;
+    res.status(200).json({ message: "Square API key updated successfully." });
+});
+
+module.exports = router;

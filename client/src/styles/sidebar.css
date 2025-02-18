@@ -1,0 +1,119 @@
+:root {
+    --sidebar-bg: #1E1E1E;
+    --sidebar-text: #FFFFFF;
+}
+
+.light {
+    --sidebar-bg: #F8F9FA;
+    --sidebar-text: #000000;
+}
+
+/* Sidebar Styling */
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    background-color: var(--sidebar-bg);
+    color: var(--sidebar-text);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Sidebar Container */
+.sidebar-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+/* Logo Section */
+.logo-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Responsive Logo */
+.logo {
+    width: 60%;
+    max-width: 150px;
+    height: auto;
+    object-fit: contain;
+}
+
+/* Adjust logo size for smaller screens */
+@media (max-width: 768px) {
+    .logo {
+        width: 80%;
+        max-width: 120px;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo {
+        width: 90%;
+        max-width: 100px;
+    }
+}
+
+/* Sidebar Navigation Links */
+.sidebar-links {
+    flex-grow: 1;
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar-links .list-group-item {
+    border: none;
+    background: none;
+    color: var(--sidebar-text);
+    font-size: 1.1rem;
+    padding: 12px;
+    transition: background 0.3s ease;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.sidebar-links .list-group-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* Profile and Logout Buttons */
+.profile-logout-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: auto;
+    gap: 10px;
+    padding-top: 20px;
+}
+
+.profile-initials {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    border: 2px solid #FFFFFF;
+    color: #FFFFFF;
+    font-weight: bold;
+    font-size: 1em;
+    background-color: transparent;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease;
+}
+
+.profile-initials:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.6);
+}
+
+.logout-button {
+    flex-grow: 1;
+}
