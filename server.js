@@ -39,6 +39,11 @@ app.use("/api/checklistLogs", checklistLogRoutes);
 app.use("/api/profile", profileRoutes);
 app.use("/api/users", userRoutes); // ✅ Added User Management Route
 
+// ✅ Root route to handle requests to "/"
+app.get("/", (req, res) => {
+    res.send("BattleKart Maintenance API is running!");
+});
+
 // ✅ Start Server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`✅ Server running on port ${PORT}`));
